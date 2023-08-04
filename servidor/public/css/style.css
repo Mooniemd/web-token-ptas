@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
 body {
   background-color: #FFFF;
   font-family: 'Nunito', sans-serif;
@@ -10,16 +11,15 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-.title{
-  font-size: 30px;
-  font-weight: bold;
-  margin-bottom: 20px;
+h1{
+  text-align: center;
+  padding-top: 20px;
 }
 
 .main{
   background-color: #89e219;
   width: 400px;
-  height: 400px;
+  height: 450px;
   margin: auto;
   display: block;
   border-bottom: 10px solid;
@@ -34,7 +34,9 @@ input, label{
 }
 
 label{
-  text-align: center;
+  width: 300px;
+  text-align: left;
+  margin-bottom: 5px;
 }
 
 .user, .password{
@@ -42,7 +44,9 @@ label{
   border-bottom: 10px solid;
   border-color: #f3f1f1;
   border-radius: 5px;
-  width: 250px;
+  width: 300px;
+  height: 30px;
+  margin-bottom: 10px;
 }
 
 input:focus{
@@ -50,11 +54,11 @@ input:focus{
 }
 
 .login{
-  width: 250px;
-  height: 30px;
+  width: 300px;
+  height: 40px;
   margin: auto;
   display: block;
-  margin-top: 175px;
+  margin-top: 130px;
   border-bottom: 10px solid;
   border-color: #f3f1f1;
   border-radius: 5px;
