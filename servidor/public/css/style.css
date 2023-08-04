@@ -1,3 +1,70 @@
 body {
-  background-color: aquamarine;
+  background-color: #FFFF;
+  font-family: 'Nunito', sans-serif;
+  color: #4b4b4b;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.title{
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.main{
+  background-color: #89e219;
+  width: 400px;
+  height: 400px;
+  margin: auto;
+  display: block;
+  border-bottom: 10px solid;
+  border-color: #58cc02;
+  border-radius: 5px;
+  margin-top: 200px ;
+}
+
+input, label{
+  display: block;
+  margin: auto;
+}
+
+label{
+  text-align: center;
+}
+
+.user, .password{
+  border-style: solid;
+  border-bottom: 10px solid;
+  border-color: #f3f1f1;
+  border-radius: 5px;
+  width: 250px;
+}
+
+input:focus{
+  outline: none;
+}
+
+.login{
+  width: 250px;
+  height: 30px;
+  margin: auto;
+  display: block;
+  margin-top: 175px;
+  border-bottom: 10px solid;
+  border-color: #f3f1f1;
+  border-radius: 5px;
+  border-style: solid;
+  cursor: pointer;
+  background-color: #ffff;
+  font-family: 'Nunito', sans-serif;
+}
+
+.login:hover{
+  background-color: #f6f5f5;
+  transition: 0.3s;
 }
