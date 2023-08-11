@@ -25,8 +25,12 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: ["/autenticar", "/logar", "/deslogar"] })
+  }).unless({ path: ["/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar"] })
 );
+
+app.get('/usuarios/cadastrar', async function(req,res){
+  res.render('/usuarios/cadastrar')
+})
 
 app.get('/autenticar', async function(req, res){
   res.render('autenticar');
@@ -40,14 +44,13 @@ app.post('/logar', (req, res) => {
   let {usuario, senha} = req.body
   if( usuario == 'jamogba' && senha == '123'){
     const id = 1;
-    const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 1000 })
+    const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 300 })
     res.cookie('el cookito', token, { httpOnly: true});
     return res.json({
       usuario: usuario,
       token: token
     })
   } 
-
   res.status(500).json({mensagem: "Seu login é inválido!"})
 })
 
