@@ -29,7 +29,19 @@ app.use(
 );
 
 app.get('/usuarios/cadastrar', async function(req,res){
-  res.render('/usuarios/cadastrar')
+  res.render('cadastrar')
+})
+
+app.post('/usuarios/cadastrar', async function(req,res){
+  let {usuario, senha, csenha} = req.body
+  if(csenha == senha) {
+    const id = 1;
+    return res.json({
+      usuario: usuario,
+      senha: senha,
+      csenha: csenha,
+    })
+  } else(res.status(500).json({mensagem: "Suas senhas não são idênticas!"}))
 })
 
 app.get('/autenticar', async function(req, res){
