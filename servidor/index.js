@@ -51,7 +51,7 @@ app.get('/', async function(req, res){
 app.post('/logar', (req, res) => {
   let {usuario, senha} = req.body
   if( usuario == 'jamogba' && senha == '123'){
-    const id = 1;
+    const id = 1
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 300 })
     res.cookie('el cookito', token, { httpOnly: true});
     return res.json({
