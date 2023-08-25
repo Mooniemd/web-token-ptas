@@ -25,7 +25,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: [ "/", "/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar"] })
+  }).unless({ path: [ "/", "/autenticar", "/logar", "/deslogar", "/usuarios/cadastrar",] })
 );
 
 app.get('/usuarios/cadastrar', async function(req,res){
@@ -35,8 +35,13 @@ app.get('/usuarios/cadastrar', async function(req,res){
 app.post('/usuarios/cadastrar', async function(req,res){
   if(req.body.csenha == req.body.senha) {
     await usuario.create(req.body);
-    res.redirect('/')
+    res.redirect('/usuarios/listar')
   } else(res.status(500).json({mensagem: "Suas senhas não são idênticas!"}))
+})
+
+app.get('/usuarios/listar', async function(req,res){
+  let nome = await usuario.findAll()
+  res.render('listar', {nome})  
 })
 
 app.get('/autenticar', async function(req, res){
@@ -44,14 +49,13 @@ app.get('/autenticar', async function(req, res){
 })
 
 app.get('/', async function(req, res){
-  let nome = await usuario.findAll()
-  res.render("home", {nome})  
+  res.render("home")  
 })
 
 app.post('/logar', (req, res) => {
   let {usuario, senha} = req.body
   if( usuario == 'jamogba' && senha == '123'){
-    
+
     const id = 1
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 300 })
     res.cookie('el cookito', token, { httpOnly: true});
