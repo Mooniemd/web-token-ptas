@@ -82,11 +82,11 @@ input:focus{
 }
 
 .btn{
-  width: 300px;
+  width: 200px;
   height: 40px;
   margin: auto;
   display: block;
-  margin-top: 130px;
+  margin-top: 20px;
   border-bottom: 10px solid;
   border-color: #f3f1f1;
   border-radius: 5px;
@@ -101,4 +101,12 @@ input:focus{
   transition: 0.3s;
 }
 
+.gridlist{
+  display: grid;
+  justify-content: center;
+}
+
+ul{
+  list-style-type: square;
+}
 
