@@ -4,17 +4,21 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Cadastro</title>
 </head>
 <body>
-  <form action="/deslogar" method="post">
-    <div class="teste">
-      <ul class="gridlist">
-        <% nome.map (usuario => { %>
-        <li><%= usuario.usuario %></li>
-        <% }) %>
-        <input type="submit" class="btn" value="Deslogar">
+  <form action="/usuarios/cadastrar" method="post">
+    <div class="main">
+      <h1 class="title">Faça seu cadastro!</h1>
+      <label for="usuario">Usuário</label>
+      <input type="text" class="user" name="usuario" id="usuario">
+      <label for="senha">Senha</label>
+      <input type="password" class="password" name="senha" id="senha">
+      <label for="senha">Confirmar senha</label>
+      <input type="password" class="password" name="csenha" id="csenha">
+      <input type="submit" class="login" name="login">
+      </div>
     </ul>
   </div>
   </form>

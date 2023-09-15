@@ -8,11 +8,12 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="/deslogar" method="post">
+  <form action="/autenticar" method="get">
     <div class="teste">
       <ul class="gridlist">
         <% nome.map (usuario => { %>
         <li><%= usuario.usuario %></li>
+        <li><%= usuario.senha%></li>
         <% }) %>
         <input type="submit" class="btn" value="Deslogar">
     </ul>
