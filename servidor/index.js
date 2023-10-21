@@ -3,7 +3,7 @@ require("dotenv-safe").config();
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
-const crypto = require('crypto');
+const crypto = require('./crypto');
 
 var cookieParser = require('cookie-parser')
 
@@ -34,16 +34,12 @@ app.get('/usuarios/cadastrar', async function(req,res){
 })
 
 app.post('/usuarios/cadastrar', async function(req,res){
-  let {usuario} = req.body
   if(req.body.csenha == req.body.senha) {
     let senhaEncrypt = crypto.encrypt(req.body.senha);
-    const newUser = await usuario.create({
-      usuario: usuario,
+    await usuario.create({
+      usuario: req.body.usuario,
       senha: senhaEncrypt
     });
-    const id = newUser.id
-    const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 300 })
-    res.cookie('token', token, { httpOnly: true});
     res.redirect('/usuarios/listar')
   } else(res.status(500).json({mensagem: "Suas senhas não são idênticas!"}))
 })
@@ -63,24 +59,21 @@ app.get('/', async function(req, res){
 
 app.post('/logar', (req, res) => {
   let {usuario, senha} = req.body
-  if( usuario == 'jamogba' && senha == '123'){
-    let senhaDecrypt = crypto.decrypt(senha);
+  if(usuario == 'jamogba' && senha == '123'){
     const id = 1
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 300 })
     res.cookie('token', token, { httpOnly: true});
-    return res.json({
-      usuario: usuario,
-      token: token,
-      senha: senhaDecrypt
-    })
+    res.redirect('/')
   } 
+
   res.status(500).json({mensagem: "Seu login é inválido!"})
 })
+
 app.post('/deslogar', function(req, res) {
   res.cookie('token', null, { httpOnly: true});
   res.json({ deslogado: true })
-  
 })
+
 app.listen(3000, function() {
   console.log('App de Exemplo escutando na porta 3000!')
 });
