@@ -57,13 +57,13 @@ app.get('/', async function(req, res){
   res.render("home")  
 })
 
-app.post('/logar', (req, res) => {
-  let {usuario, senha} = req.body
-  if(usuario == 'jamogba' && senha == '123'){
-    const id = 1
-    const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 300 })
+app.post('/logar', async (req, res) => {
+  const logIn = await usuario.findOne({ where: {usuario: req.body.usuario, senha: crypto.encrypt(req.body.senha)} })
+  if(logIn){
+    const id = logIn.id;
+    const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 400 })
     res.cookie('token', token, { httpOnly: true});
-    res.redirect('/')
+    return res.redirect('/')
   } 
 
   res.status(500).json({mensagem: "Seu login é inválido!"})

@@ -102,11 +102,15 @@ input:focus{
 }
 
 .gridlist{
+  padding: 20px;
+  font-size: 14px;
+  text-align: left;
   display: grid;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:  1fr;
 }
 
 ul{
-  list-style-type: square;
+  list-style-type: none;
 }
 
