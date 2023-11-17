@@ -3,6 +3,14 @@ require("dotenv-safe").config();
 const jwt = require('jsonwebtoken');
 var { expressjwt: expressJWT } = require("express-jwt");
 const cors = require('cors');
+
+const corsopt = {
+  origin: "https://localhost:3000",
+  methods: "GET, PUT, POST, DELTE",
+  allowedHeaders: "Content-Type, Authorization",
+  credentials: true
+}
+
 const crypto = require('./crypto');
 
 var cookieParser = require('cookie-parser')
@@ -13,9 +21,7 @@ const { usuario } = require('./models');
 const app = express();
 
 app.set('view engine', 'ejs');
-
-app.use(cors());
-
+app.use(cors(corsopt));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 app.use(express.static('public'));
@@ -45,8 +51,9 @@ app.post('/usuarios/cadastrar', async function(req,res){
 })
 
 app.get('/usuarios/listar', async function(req,res){
+
   let nome = await usuario.findAll()
-  res.render('listar', {nome})  
+  res.json(nome)  
 })
 
 app.get('/autenticar', async function(req, res){
@@ -62,7 +69,10 @@ app.post('/logar', async (req, res) => {
   if(logIn){
     const id = logIn.id;
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 400 })
-    res.cookie('token', token, { httpOnly: true});
+    res.cookie('token', token, { httpOnly: true}).json({
+      nome: logIn.usuario,
+      token: token
+    }); 
     return res.redirect('/')
   } 
 

@@ -19,7 +19,7 @@
     "express-jwt": "^7.7.5",
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
-    "sequelize": "^6.21.3"
+    "sequelize": "^6.35.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.19",
