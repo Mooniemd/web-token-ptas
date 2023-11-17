@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+body{
+    background-color: white;
+    color: black;
+    font-family: 'Work Sans', sans-serif;
+    width: 100%;
+    margin: auto;
+}
+
+.navbar {
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1000;
+  position: fixed;
+  box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+  @media (min-width: 85vh) {
+}
+}
+
+a{
+  display: inline-block;
+  padding: 1em;
+  text-decoration: none;
+  text-align: center;
+  color: rgb(161, 161, 161);
+  transition: 250ms;
+}
+
+a:hover{
+  transition: 250ms;
+  color: black;
+}
+
+h1{
+    font-size: 2rem;
+    width: 100%;
+    padding-bottom: 10px;
+
+      @media (min-width: 768px) {
+        text-align: left;
+        margin: 0;
+}
+}
+
+form{
+    align-self: center;
+}
+
+.container{
+    width: 100%;
+    max-width: 460px; 
+    display: block;
+    margin: auto;
+    flex-direction: column;
+    padding: 2rem 2rem 1.5rem;  
+    margin-top: 100px;
+    box-shadow: 10px 18px 25px 0px rgba(0,0,0,0.1);
+    @media (min-width: 500px) {
+      flex-direction: row;
+      align-items: center;
+}
+}
+
+input{
+    width: clamp(120px, 50vw, 420px);
+    height: 2.5rem;
+    padding: 0 1.25rem;
+    border: 1px solid rgb(206, 206, 206);
+    border-bottom: 1px solid black;
+    border-radius: 2px;
+    margin: 0.625rem auto;
+    transition: all 250ms;
+    @media (min-width: 768px) {
+      width: clamp(120px, 35vw, 420px);
+}
+}
+
+input:focus{
+  outline: none;
+  border: 1px solid black;
+}
+
+input:hover{
+  border: 1px solid black;
+}
+
+label{
+     font-size: 1rem;
+      color: black;
+      display: block;
+      transform-origin: 0 0; 
+      transition: all 500ms;
+      pointer-events: none;
+}
+
+.displayBtn{
+  display: inline-block;
+}
+
+button{
+  font-family: 'Work Sans', sans-serif;
+  width: 100%;
+  max-width: 200px;
+  padding: 5px;
+  display: inline-block;
+  margin-left: 23px;
+  margin-top: 15px;
+  border: 1px solid rgb(206, 206, 206);
+  border-bottom: 1px solid black;
+  border-radius: 2px;
+  cursor: pointer;
+  background-color: white;
+  transition: 250ms;  
+  @media (min-width: 200px) {
+    width: clamp(80px, 20vw, 420px);
+}
+}
+
+button:hover{
+  background-color: rgb(230, 229, 229);
+  transition: 250ms;
+}
+
+.userList{
+  font-size: 14px;
+  margin: 10px;
+  margin-top: 100px;
+  width: 100%;
+  max-width: 460px; 
+  display: block;
+  margin: auto;
+  flex-direction: column;
+  padding: 2rem 2rem 1.5rem;  
+  margin-top: 100px;
+  box-shadow: 10px 18px 25px 0px rgba(0,0,0,0.1);
+  @media (min-width: 500px) {
+    flex-direction: row;
+    align-items: center;
+}
+}
+
+.listText{
+  column-count: 2;
+  text-align: justify;
+}
+
+span{
+  font-weight: lighter;
+}
