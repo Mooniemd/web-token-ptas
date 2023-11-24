@@ -32,7 +32,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: [ "/", "/autenticar", "/logar", "/deslogar"] })
+  }).unless({ path: [ "/", "/autenticar", "/user/authenticated", "/deslogar"] })
 );
 
 app.get('/usuarios/cadastrar', async function(req,res){
@@ -51,7 +51,6 @@ app.post('/usuarios/cadastrar', async function(req,res){
 })
 
 app.get('/usuarios/listar', async function(req,res){
-
   let nome = await usuario.findAll()
   res.json(nome)  
 })
@@ -64,8 +63,8 @@ app.get('/', async function(req, res){
   res.render("home")  
 })
 
-app.post('/logar', async (req, res) => {
-  const logIn = await usuario.findOne({ where: {usuario: req.body.usuario, senha: crypto.encrypt(req.body.senha)} })
+app.post('/user/authenticated/', async (req, res) => {
+  const logIn = await usuario.findOne({ where: {usuario: req.body.name, senha: crypto.encrypt(req.body.senha)} })
   if(logIn){
     const id = logIn.id;
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 400 })
@@ -73,10 +72,9 @@ app.post('/logar', async (req, res) => {
       nome: logIn.usuario,
       token: token
     }); 
-    return res.redirect('/')
+    //return res.json(logIn)
   } 
-
-  res.status(500).json({mensagem: "Seu login é inválido!"})
+  //return res.status(500).json({ message: "Login inválido!"})
 })
 
 app.post('/deslogar', function(req, res) {
@@ -84,6 +82,6 @@ app.post('/deslogar', function(req, res) {
   res.json({ deslogado: true })
 })
 
-app.listen(3000, function() {
-  console.log('App de Exemplo escutando na porta 3000!')
+app.listen(4000, function() {
+  console.log('App de Exemplo escutando na porta 4000!')
 });

@@ -1,6 +1,6 @@
 'use server'
 
-const url = "https://ptac-aula017.vercel.app"
+const url = "https://localhost:4000"
 const getUserAuthenticated = async(user) =>{
     const respondeOfApi = await fetch(url + "/user/authenticated",
         {
