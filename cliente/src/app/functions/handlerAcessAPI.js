@@ -1,10 +1,10 @@
 'use server'
 
-const url = "https://localhost:4000"
+const url = "https://ptac-aula017.vercel.app"
 const getUserAuthenticated = async(user) =>{
     const respondeOfApi = await fetch(url + "/user/authenticated",
         {
-            method: "POST",
+            method: "POST", 
             headers: { "Content-Type": "Application/Json"  },
             body: JSON.stringify(user),
             cache: "no-cache"

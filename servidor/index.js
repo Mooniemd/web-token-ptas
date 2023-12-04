@@ -32,7 +32,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: [ "/", "/autenticar", "/user/authenticated", "/deslogar"] })
+  }).unless({ path: [ "/", "/autenticar", "/usuarios/cadastrar", "/deslogar", "/user/authenticated/"] })
 );
 
 app.get('/usuarios/cadastrar', async function(req,res){
@@ -68,13 +68,13 @@ app.post('/user/authenticated/', async (req, res) => {
   if(logIn){
     const id = logIn.id;
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 400 })
-    res.cookie('token', token, { httpOnly: true}).json({
+    return res.cookie('token', token, { httpOnly: true}).json({
       nome: logIn.usuario,
       token: token
     }); 
     //return res.json(logIn)
   } 
-  //return res.status(500).json({ message: "Login inválido!"})
+  console.log(usuario)
 })
 
 app.post('/deslogar', function(req, res) {
