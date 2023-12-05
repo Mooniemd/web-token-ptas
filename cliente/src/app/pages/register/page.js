@@ -11,6 +11,7 @@ export default function Login() {
     const [user, setUser] = useState({
       name: '',
       password: '',
+      cpassword: ''
     });
 
 const { push } = useRouter();
@@ -48,6 +49,10 @@ return (
         <label htmlFor="password">Senha</label>
         <input placeholder='Senha' type='password' name="password" required id="password"
           onChange={(e) => { setUser({ ...user, password: e.target.value }) }}>
+        </input>
+        <label htmlFor="cpassword">Confirmar senha</label>
+        <input placeholder='Confirmar senha' type='password' name="cpassword" required id="cpassword"
+          onChange={(e) => { setUser({ ...user, cpassword: e.target.value }) }}>
         </input>
         <div className="displayBtn">
         <button id="btn" className="btn">Cadastrar</button>

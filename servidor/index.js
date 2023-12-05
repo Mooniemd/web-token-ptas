@@ -40,10 +40,10 @@ app.get('/usuarios/cadastrar', async function(req,res){
 })
 
 app.post('/usuarios/cadastrar', async function(req,res){
-  if(req.body.csenha == req.body.senha) {
-    let senhaEncrypt = crypto.encrypt(req.body.senha);
+  if(req.body.cpassword == req.body.password) {
+    let senhaEncrypt = crypto.encrypt(req.body.password);
     await usuario.create({
-      usuario: req.body.usuario,
+      usuario: req.body.name,
       senha: senhaEncrypt
     });
     res.redirect('/usuarios/listar')
