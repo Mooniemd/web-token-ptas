@@ -4,6 +4,7 @@ import ListUsers from "@/app/components/ListUsers";
 
 export default async function Dashboard() {
     const users = await getUsers();
+    console.log(users)
 
     return(
         <div>

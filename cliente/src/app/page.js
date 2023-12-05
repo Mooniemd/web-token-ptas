@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const [user, setUser] = useState({
-    email: '',
+    name: '',
     password: '',
   });
   const { push, refresh } = useRouter();
@@ -16,6 +16,7 @@ export default function Login() {
   const handlerLogin = async (e) => { e.preventDefault();
     try {
       const userAuth = await handlerAcessUser(user);
+      console.log(userAuth)
       if(userAuth.token === undefined){
         toast.error('Seu login está incorreto!');
       }
@@ -37,9 +38,9 @@ export default function Login() {
     <div className="container">
       <h1>Login</h1>
       <form onSubmit={handlerLogin}>
-      <label htmlFor="name">E-mail</label>
-        <input placeholder='E-mail' type="email" name="email" required id="email"
-          onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
+      <label htmlFor="name">Nome</label>
+        <input placeholder='Nome' type="text" name="name" required id="name"
+          onChange={(e) => { setUser({ ...user, name: e.target.value }) }}>
         </input>
         <label htmlFor="password">Senha</label>
         <input placeholder='Senha' type='password' name="password" required id="password"

@@ -32,7 +32,7 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
-  }).unless({ path: [ "/", "/autenticar", "/usuarios/cadastrar", "/deslogar", "/user/authenticated/"] })
+  }).unless({ path: [ "/", "/autenticar", "/usuarios/cadastrar", "/deslogar", "/logar"] })
 );
 
 app.get('/usuarios/cadastrar', async function(req,res){
@@ -63,8 +63,8 @@ app.get('/', async function(req, res){
   res.render("home")  
 })
 
-app.post('/user/authenticated/', async (req, res) => {
-  const logIn = await usuario.findOne({ where: {usuario: req.body.name, senha: crypto.encrypt(req.body.senha)} })
+app.post('/logar', async (req, res) => {
+  const logIn = await usuario.findOne({ where: {usuario: req.body.name, senha: crypto.encrypt(req.body.password)} })
   if(logIn){
     const id = logIn.id;
     const token = jwt.sign({ id }, process.env.SECRET, {  expiresIn: 400 })
@@ -74,7 +74,6 @@ app.post('/user/authenticated/', async (req, res) => {
     }); 
     //return res.json(logIn)
   } 
-  console.log(usuario)
 })
 
 app.post('/deslogar', function(req, res) {

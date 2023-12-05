@@ -10,7 +10,6 @@ import { newUser } from '@/app/functions/handlerAcessAPI';
 export default function Login() {
     const [user, setUser] = useState({
       name: '',
-      email: '',
       password: '',
     });
 
@@ -45,10 +44,6 @@ return (
         <label htmlFor="name">Nome</label>
       <input placeholder='Name' type="text" name="name" required id="name"
           onChange={(e) => { setUser({ ...user, name: e.target.value }) }}>
-        </input>
-        <label htmlFor="email">Email</label>
-        <input placeholder='E-mail' type="email" name="email" required id="email"
-          onChange={(e) => { setUser({ ...user, email: e.target.value }) }}>
         </input>
         <label htmlFor="password">Senha</label>
         <input placeholder='Senha' type='password' name="password" required id="password"

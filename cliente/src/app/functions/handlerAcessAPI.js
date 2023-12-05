@@ -1,8 +1,10 @@
 'use server'
 
-const url = "https://ptac-aula017.vercel.app"
+import { cookies } from "next/dist/client/components/headers";
+
+const url = "http://localhost:4000"
 const getUserAuthenticated = async(user) =>{
-    const respondeOfApi = await fetch(url + "/user/authenticated",
+    const respondeOfApi = await fetch(url + "/logar",
         {
             method: "POST", 
             headers: { "Content-Type": "Application/Json"  },
@@ -31,14 +33,14 @@ const newUser = async (user) =>{
 
 const getUsers = async () =>{
     try{
-        const respondeOfApi = await fetch( url + "/users",{
+        const respondeOfApi = await fetch( url + "/usuarios/listar",{
             next: { revalidate: 10},
-            cache: "no-cache"
+            headers: { 'Content-Type': 'Application/json', Cookie: `token=${cookies().get("token").value}`},
         });
         const listUsers = respondeOfApi.json()
         return listUsers;
-    } catch{
-        return null
+    } catch(err){
+        //return []
     }
 
 }
